@@ -1,0 +1,28 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci
+      - name: Compile contracts
+        run: npm run contracts:compile
+      - name: Generated ABI is up to date
+        run: git diff --exit-code src/adapters/evm/generated
+      - run: npm run typecheck
+      - run: npm run lint
+      - name: Unit + architecture tests
+        run: npm test
+      - name: Contract tests (Anvil)
+        run: npm run contracts:test
+      - run: npm run build

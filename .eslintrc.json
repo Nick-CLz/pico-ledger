@@ -1,0 +1,24 @@
+{
+  "extends": "next/core-web-vitals",
+  "overrides": [
+    {
+      "files": ["src/core/**/*.ts"],
+      "rules": {
+        "no-restricted-imports": ["error", {
+          "patterns": [
+            { "group": ["@/adapters/*", "@/ui/*", "@/composition/*", "../../adapters/*", "../../ui/*"], "message": "core must not depend on adapters, UI or composition (hexagonal boundary)." },
+            { "group": ["react", "react-dom", "next", "next/*", "viem", "viem/*"], "message": "core must stay framework- and chain-library-free." }
+          ]
+        }]
+      }
+    },
+    {
+      "files": ["src/ui/**/*.{ts,tsx}"],
+      "rules": {
+        "no-restricted-imports": ["error", {
+          "patterns": [{ "group": ["@/adapters/*"], "message": "UI talks to use cases via the container, never to adapters directly." }]
+        }]
+      }
+    }
+  ]
+}

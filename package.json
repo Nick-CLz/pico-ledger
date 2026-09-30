@@ -1,0 +1,41 @@
+{
+  "name": "pico-ledger",
+  "version": "0.1.0",
+  "private": true,
+  "description": "On-chain micro-loan ledger: Next.js 14 + TypeScript + Tailwind frontend built on hexagonal architecture, with a Solidity loan book.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "contracts:compile": "node scripts/compile-contracts.mjs",
+    "contracts:test": "vitest run --config vitest.contracts.config.ts",
+    "contracts:deploy": "node scripts/deploy-contract.mjs"
+  },
+  "dependencies": {
+    "next": "^14.2.15",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "viem": "^2.57.1"
+  },
+  "devDependencies": {
+    "@foundry-rs/anvil": "^1.7.1",
+    "@types/node": "^20.19.43",
+    "@types/react": "^18.3.31",
+    "@types/react-dom": "^18.3.7",
+    "autoprefixer": "^10.6.1",
+    "eslint": "^8.57.1",
+    "eslint-config-next": "^14.2.15",
+    "postcss": "^8.5.28",
+    "solc": "^0.8.26",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^5.9.3",
+    "vitest": "^2.1.9"
+  },
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  }
+}
